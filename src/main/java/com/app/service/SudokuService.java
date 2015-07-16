@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.dao.DataStore;
+import com.app.exceptions.SudokuException;
 import com.app.pojo.DifficultyLevel;
 import com.app.pojo.MoveValidator;
 import com.app.pojo.SudokuBoard;
@@ -28,7 +29,9 @@ public class SudokuService {
         return board;
     }
 
-    public MoveValidator validateMove(long id, int x, int y, int number) {
-        return null;
+    public MoveValidator validateMove(long id, int x, int y, int number) throws SudokuException {
+        String sudokuBoardAsString =  dataStore.getSudoku(id);
+        if(sudokuBoardAsString == null) throw new SudokuException("Sudoku with given id doesn't exist.");
+        return SudokuHelper.isValidMove(x, y, number, sudokuBoardAsString);
     }
 }

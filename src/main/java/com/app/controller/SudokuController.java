@@ -1,15 +1,15 @@
 package com.app.controller;
 
+import com.app.exceptions.SudokuException;
 import com.app.pojo.DifficultyLevel;
 import com.app.pojo.MoveValidator;
 import com.app.pojo.SudokuBoard;
 import com.app.service.SudokuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.QueryParam;
 
 @RestController
@@ -35,11 +35,19 @@ public class SudokuController {
     public MoveValidator validateMove(@QueryParam("id")long id,
                                       @QueryParam("x")int x,
                                       @QueryParam("x")int y,
-                                      @QueryParam("number")int number) {
+                                      @QueryParam("number")int number) throws SudokuException {
 
 
         return sudokuService.validateMove(id, x, y, number);
     }
 
+    @ExceptionHandler(SudokuException.class)
+    public ModelAndView handleException(HttpServletRequest req, SudokuException exception) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("exception", exception);
+        mav.addObject("url", req.getRequestURL());
+        mav.setViewName("error");
+        return mav;
+    }
 }
 

@@ -1,5 +1,7 @@
 package com.app.utils;
 
+import com.app.pojo.MoveValidator;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -60,6 +62,51 @@ public class SudokuHelper {
         if(doesRowContainSameNumber(x, number, a)) return false;
         if(doesColumnContainSameNumber(y, number, a)) return false;
         if(doesBoxContainSameNumber(x, y, number, a)) return false;
+        return true;
+    }
+
+    public static MoveValidator isValidMove(int x, int y, int number, String boardAsString) {
+        boardAsString = boardAsString.replaceAll(",", "");
+        int rows, columns;
+        rows = columns = 9;
+        switch(boardAsString.length()){
+            case 81: rows=columns=9; break;
+            case 36: rows=columns=6; break;
+            case 16: rows=columns=4; break;
+        }
+
+        int A[][] = convertStringTo2DArray(boardAsString, rows, columns);
+        if(isPuzzleSolved(A)) return MoveValidator.COMPLETE;
+        boolean result = isValidMove(x, y, number, A);
+        if(result) {
+            if (isPuzzleSolved(A)) return MoveValidator.COMPLETE;
+            else return MoveValidator.VALID;
+        }
+        else
+            return  MoveValidator.INVALID;
+    }
+
+    public static int[][] convertStringTo2DArray(String sudokuBoardAsString, int rows, int columns){
+        int A[][] = new int[rows][columns];
+        for ( int row = 0; row < rows ; row++ ){
+            for ( int column = 0; column < columns; column++ ){
+                int i = Character.getNumericValue(sudokuBoardAsString.charAt(row*9+column));
+                A[row][column] = i;
+            }
+        }
+        return A;
+    }
+
+    private static boolean isPuzzleSolved(int[][] a) {
+        int rows, columns;
+        rows = columns = a.length;
+        for ( int row = 0; row < rows; row++ ){
+            for ( int column = 0; column < columns; column++ ){
+                if ( a[column][row] == 0 ){
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
