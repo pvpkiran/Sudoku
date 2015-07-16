@@ -14,8 +14,8 @@ This is a Sudoku web service which can generate a random sudoku board of 9X9 wit
                    
     Example : `http://localhost:8080/getboard/1/9/9` 
     
-    Output  : {"id":8218078219143876788,
-                "sudokuBoardAsString":"1,0,0,0,6,9,0,3,0,2,4,0,0,0,1,6,0,7,0,0,5,0,0,0,8,2,0,6,1,4,0,2,0,5,9,0,0,0,0,8,0,0,0,7,0,9,2,8,5,1,0,0,6,0,0,0,9,1,7,0,0,8,4,0,5,6,0,3,0,2,1,0,0,7,3,0,0,6,0,5,0",
+    Output  : {**"id"** : 8218078219143876788,
+               **"sudokuBoardAsString"** : "1,0,0,0,6,9,0,3,0,2,4,0,0,0,1,6,0,7,0,0,5,0,0,0,8,2,0,6,1,4,0,2,0,5,9,0,0,0,0,8,0,0,0,7,0,9,2,8,5,1,0,0,6,0,0,0,9,1,7,0,0,8,4,0,5,6,0,3,0,2,1,0,0,7,3,0,0,6,0,5,0",
                 }
                 
   This is similar to
@@ -38,10 +38,10 @@ This is a Sudoku web service which can generate a random sudoku board of 9X9 wit
             
         http://<server>:<port>/validatemove?id=<returned_id_from_getboard>&x=<x-coordinate>&y=<y-coordinate>&number=<number_to_be_inserted>
    
-      sample url : http://localhost:8080/validatemove?id=888895882976226&x=1&y=3&number=7
+      Example : `http://localhost:8080/validatemove?id=888895882976226&x=1&y=3&number=7`
    This returns   
    
-      - Exception : If the given id is invalid
-      - VALID     : If the move is Valid
-      - INVALID   : If the move is Invalid
-      - COMPLETE  : If the board is completed
+      - **Exception** : If the given id is invalid
+      - **VALID**     : If the move is Valid
+      - **INVALID**   : If the move is Invalid
+      - **COMPLETE**  : If the board is completed
