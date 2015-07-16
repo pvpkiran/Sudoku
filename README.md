@@ -32,13 +32,14 @@ This is a Sudoku web service which can generate a random sudoku board of 9X9 wit
              0 7 3   0 0 6   0 5 0
           ```
 
-2. To make a move on a given sudoku board issue a POST request on
-
-   http://<server>:<port>/validatemove?id=<returned_id_from_getboard>&x=<x-coordinate>&y=<y-coordinate>&number=<number_to_be_inserted>
+2. To make a move on a given sudoku board issue a POST request on      
+             
+http://<server>:<port>/validatemove?id=<returned_id_from_getboard>&x=<x-coordinate>&y=<y-coordinate>&number=<number_to_be_inserted>
    
       sample url : http://localhost:8080/validatemove?id=888895882976226&x=1&y=3&number=7
-   This returns
-      Exception : If the given id is invalid
-      VALID     : If the move is Valid
-      INVALID   : If the move is Invalid
-      COMPLETE  : If the board is completed
+   This returns   
+   
+      - Exception : If the given id is invalid
+      - VALID     : If the move is Valid
+      - INVALID   : If the move is Invalid
+      - COMPLETE  : If the board is completed
