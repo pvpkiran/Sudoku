@@ -2,8 +2,7 @@ package com.app.pojo;
 
 public class SudokuBoard {
 
-    private long id;
-    private final int rows;
+   private final int rows;
     private final int columns;
     private String sudokuBoardAsString;
     private final DifficultyLevel difficultyLevel;
@@ -13,18 +12,17 @@ public class SudokuBoard {
         this.rows = rows;
         this.columns = columns;
     }
-    public long getId() {
-        return id;
+    public int getRows() {
+        return rows;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public int getColumns() {
+        return columns;
     }
 
     public void setSudokuBoardAsString(String sudokuBoardAsString) {
         this.sudokuBoardAsString = sudokuBoardAsString;
     }
-
 
     public String getSudokuBoardAsString() {
         return sudokuBoardAsString;
