@@ -57,6 +57,14 @@ public class SudokuHelper {
         return sb.substring(0, sb.length() - 1);
     }
 
+    private static String prepareReturnStringForSudokuBoard(String sudokuBoardAsString) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<sudokuBoardAsString.length();i++){
+            sb.append(sudokuBoardAsString.charAt(i)+",");
+        }
+        return sb.substring(0, sb.length() - 1);
+    }
+
     private static boolean isValidMove(int x, int y, int number, int[][] a) {
         if(a[x][y] != 0) return false;
         if(doesRowContainSameNumber(x, number, a)) return false;
@@ -233,6 +241,13 @@ public class SudokuHelper {
     }
 
     public static void main(String v[]){
-        generateRandomNumbersForSudoku(1, 9, 9);
+        //generateRandomNumbersForSudoku(1, 9, 9);
+        updateMove(0,0,8,"0,0,0,9,2,3,6,1,7,6,0,2,0,8,1,4,3,5,1,0,3,4,0,6,0,0,2,2,0,0,0,0,8,0,6,0,0,3,6,5,0,7,8,4,1,4,8,7,6,0,0,9,0,3,3,2,9,1,6,0,0,5,4,5,4,8,7,0,9,3,2,0,7,1,0,3,5,2,0,8,9");
+    }
+
+    public static String updateMove(int x, int y, int number, String sudokuBoardAsString) {
+        sudokuBoardAsString = sudokuBoardAsString.replaceAll(",", "");
+        String newSudokuBoardAsString = sudokuBoardAsString.substring(0,x*9+y)+number+""+sudokuBoardAsString.substring(x*9+y+1);
+        return prepareReturnStringForSudokuBoard(newSudokuBoardAsString);
     }
 }

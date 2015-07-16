@@ -32,6 +32,10 @@ public class SudokuService {
     public MoveValidator validateMove(long id, int x, int y, int number) throws SudokuException {
         String sudokuBoardAsString =  dataStore.getSudoku(id);
         if(sudokuBoardAsString == null) throw new SudokuException("Sudoku with given id doesn't exist.");
-        return SudokuHelper.isValidMove(x, y, number, sudokuBoardAsString);
+        MoveValidator result = SudokuHelper.isValidMove(x, y, number, sudokuBoardAsString);
+        if(result.equals(MoveValidator.VALID))
+            dataStore.addToStore(id, SudokuHelper.updateMove(x, y, number, sudokuBoardAsString));
+
+        return result;
     }
 }
