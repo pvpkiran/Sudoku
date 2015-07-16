@@ -68,3 +68,4 @@ This is a Sudoku web service which can generate a random sudoku board of 9X9 wit
     3. Make the Service work for any NXN Board(Current code is generic enough to handle any NXN board. But there might be a small tweaking required.)
     4. Add Health Checks.(Since it is a web service health check are quite important)
     5. Documentation and Javadoc generation.(Since most of the functions are self explanatory I haven't added comments)
+    6. Use a persistent Data store(Database) instead of In-Memory store.
