@@ -32,12 +32,13 @@ public class SudokuController {
     }
 
     @RequestMapping(value ="/validatemove", method = RequestMethod.POST)
-    public MoveValidator validateMove(@QueryParam("x")int x,
+    public MoveValidator validateMove(@QueryParam("id")long id,
+                                      @QueryParam("x")int x,
                                       @QueryParam("x")int y,
                                       @QueryParam("number")int number) {
 
 
-        return sudokuService.validateMove(x, y, number);
+        return sudokuService.validateMove(id, x, y, number);
     }
 
 }
