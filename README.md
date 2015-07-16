@@ -45,3 +45,26 @@ This is a Sudoku web service which can generate a random sudoku board of 9X9 wit
       - **VALID**     : If the move is Valid
       - **INVALID**   : If the move is Invalid
       - **COMPLETE**  : If the board is completed
+  
+###Build & Run Instructions
+    1. Build
+       Clone the repository and run these commands form project home directory
+ ```
+    mvn clean package
+    java -jar target/Sudoku-1.0.jar
+ ```
+    2. Run
+  ```
+    java -jar target/Sudoku-1.0.jar
+ ```
+    3. To run the server other than port 8080 
+```
+    java -jar target/Sudoku-1.0.jar -Dserver.port=8090
+```
+
+###Possible Improvements
+    1. Better Algorithm for generating sudoku board
+    2. Extract values from a properties file instead of hardcoding
+    3. Make the Service work for any NXN Board(Current code is generic enough to handle any NXN board. But there might be a small tweaking required.)
+    4. Add Health Checks.(Since it is a web service health check are quite important)
+    5. Documentation and Javadoc generation.(Since most of the functions are self explanatory I haven't added comments)
